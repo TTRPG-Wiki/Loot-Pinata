@@ -1,15 +1,15 @@
 {
   "manifest_version": 1,
   "name": "Loot Pinata",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "description": "Roll D&D 5e, Pathfinder 2e, Shadowdark, OSE, or custom loot from the sidebar",
   "author": "Kevin Shunk",
   "homepage_url": "https://github.com/TTRPG-Wiki/Loot-Pinata",
-  "icon": "https://ttrpg-wiki.github.io/Loot-Pinata/icon.png?v=121",
+  "icon": "https://ttrpg-wiki.github.io/Loot-Pinata/icon.png?v=130",
   "action": {
     "title": "Loot Pinata",
-    "icon": "https://ttrpg-wiki.github.io/Loot-Pinata/icon.png?v=121",
-    "popover": "https://ttrpg-wiki.github.io/Loot-Pinata/src/loot-display.html?v=111",
+    "icon": "https://ttrpg-wiki.github.io/Loot-Pinata/action-icon.svg?v=130",
+    "popover": "https://ttrpg-wiki.github.io/Loot-Pinata/src/loot-display.html?v=130",
     "height": 620,
     "width": 380
   }
