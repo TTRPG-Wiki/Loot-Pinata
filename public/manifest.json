@@ -1,7 +1,7 @@
 {
   "manifest_version": 1,
   "name": "Loot Pinata",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Right-click any monster token to roll D&D 5e, Pathfinder 2e, Shadowdark, OSE, or custom loot",
   "author": "Kevin Shunk",
   "homepage_url": "https://github.com/TTRPG-Wiki/Loot-Pinata",
