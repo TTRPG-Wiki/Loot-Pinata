@@ -5,11 +5,11 @@
   "description": "Right-click any monster token to roll D&D 5e, Pathfinder 2e, Shadowdark, OSE, or custom loot",
   "author": "Kevin Shunk",
   "homepage_url": "https://github.com/TTRPG-Wiki/Loot-Pinata",
-  "icon": "./icon.svg",
+  "icon": "/Loot-Pinata/icon.svg",
   "action": {
     "title": "Loot Pinata",
-    "icon": "./icon.svg",
-    "popover": "./src/background.html",
+    "icon": "/Loot-Pinata/icon.svg",
+    "popover": "/Loot-Pinata/src/background.html",
     "height": 80,
     "width": 320
   }
