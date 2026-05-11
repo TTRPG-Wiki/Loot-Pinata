@@ -1,4 +1,5 @@
 {
+  "manifestVersion": 1,
   "name": "Loot Pinata",
   "version": "1.0.0",
   "description": "Right-click any monster token to roll D&D 5e loot from the DMG tables",
