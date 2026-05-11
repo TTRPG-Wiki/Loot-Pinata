@@ -253,8 +253,35 @@ function displayLoot(loot) {
     html += '<div class="no-content">None.</div>';
   }
 
+  html += `
+    <div class="action-row">
+      <button class="reveal-btn" id="reveal-btn">📢 Reveal to Players</button>
+    </div>`;
+
   results.innerHTML = html;
   results.classList.add('visible');
+  state.lastLoot = loot;
+
+  document.getElementById('reveal-btn').addEventListener('click', revealToPlayers);
+}
+
+async function revealToPlayers() {
+  const btn = document.getElementById('reveal-btn');
+  if (!btn || !state.lastLoot) return;
+  btn.disabled = true;
+  btn.textContent = 'Revealing…';
+  try {
+    await OBR.broadcast.sendMessage('loot-pinata/reveal', state.lastLoot, { destination: 'REMOTE' });
+    btn.textContent = '✓ Revealed';
+    setTimeout(() => {
+      btn.disabled = false;
+      btn.textContent = '📢 Reveal to Players';
+    }, 2500);
+  } catch (err) {
+    btn.disabled = false;
+    btn.textContent = '📢 Reveal to Players';
+    showError(`Broadcast failed: ${err.message}`);
+  }
 }
 
 // ─────────────── File upload ───────────────

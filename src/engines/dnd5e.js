@@ -362,6 +362,33 @@ function rollHoardExtras(tier) {
   return { gems, art, magicItems };
 }
 
+const WEAPON_TYPES = [
+  'Battleaxe', 'Greataxe', 'Greatsword', 'Halberd', 'Longsword', 'Maul',
+  'Morningstar', 'Rapier', 'Scimitar', 'Shortsword', 'Trident',
+  'War Pick', 'Warhammer', 'Mace', 'Spear', 'Glaive', 'Lance',
+  'Longbow', 'Heavy Crossbow', 'Hand Crossbow', 'Light Crossbow',
+  'Dagger', 'Handaxe', 'Javelin', 'Quarterstaff', 'Whip',
+];
+
+const ARMOR_TYPES_LIGHT = ['Leather', 'Studded Leather', 'Padded'];
+const ARMOR_TYPES_MEDIUM = ['Chain Shirt', 'Scale Mail', 'Breastplate', 'Half Plate'];
+const ARMOR_TYPES_HEAVY = ['Chain Mail', 'Splint', 'Plate', 'Ring Mail'];
+const ARMOR_TYPES_ALL = [...ARMOR_TYPES_LIGHT, ...ARMOR_TYPES_MEDIUM, ...ARMOR_TYPES_HEAVY];
+
+function specifyWeaponsAndArmor(items) {
+  if (!items) return items;
+  return items.map(item => {
+    // "+1 Weapon", "+2 Weapon", "+3 Weapon"
+    const wMatch = item.match(/^([+]\d+) Weapon$/);
+    if (wMatch) return `${wMatch[1]} ${pickRandom(WEAPON_TYPES)}`;
+    // "Weapon +1", "+1 Striking Weapon" etc. (PF2e style — leave alone)
+    // "+1 Armor", "+2 Armor", "+3 Armor" (without parens)
+    const aMatch = item.match(/^([+]\d+) Armor$/);
+    if (aMatch) return `${aMatch[1]} ${pickRandom(ARMOR_TYPES_ALL)} Armor`;
+    return item;
+  });
+}
+
 export function generateLoot(cr, mode = 'individual') {
   const tier = getTier(cr);
   if (mode === 'hoard') {
@@ -371,15 +398,15 @@ export function generateLoot(cr, mode = 'individual') {
       subtitle: `Hoard CR ${cr}`,
       coins: rollHoardCoins(tier),
       gems,
-      jewelry: art, // art objects displayed under jewelry section
-      magicItems,
+      jewelry: art,
+      magicItems: specifyWeaponsAndArmor(magicItems),
     };
   }
   return {
     system: 'D&D 5e',
     subtitle: `CR ${cr}`,
     coins: rollIndividualCoins(tier),
-    magicItems: rollMagicItemsIndividual(tier),
+    magicItems: specifyWeaponsAndArmor(rollMagicItemsIndividual(tier)),
   };
 }
 
