@@ -1,0 +1,1 @@
+import{O as o}from"./index-CoDcLJ1B.js";const e=new URL("../icon.svg",window.location.href).href,t=new URL("./loot-display.html",window.location.href).href;o.onReady(()=>{o.contextMenu.create({id:"loot-pinata/loot",icons:[{icon:e,label:"Loot!",filter:{roles:["GM"],every:[{key:"type",value:"IMAGE"}]}}],embed:{url:t,height:520}})});
