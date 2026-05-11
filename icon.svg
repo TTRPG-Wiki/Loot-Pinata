@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Bag body -->
+  <ellipse cx="50" cy="68" rx="33" ry="27" fill="#C8860A"/>
+  <!-- Bag shine -->
+  <ellipse cx="38" cy="60" rx="10" ry="7" fill="#E8A020" opacity="0.4"/>
+  <!-- Bag neck -->
+  <rect x="34" y="36" width="32" height="20" rx="6" fill="#A06808"/>
+  <!-- Bag knot -->
+  <ellipse cx="50" cy="34" rx="13" ry="9" fill="#7A4E05"/>
+  <!-- Coin -->
+  <circle cx="50" cy="70" r="15" fill="#FFD700" stroke="#B8860B" stroke-width="2"/>
+  <circle cx="50" cy="70" r="11" fill="none" stroke="#B8860B" stroke-width="1"/>
+  <text x="50" y="75" font-size="13" text-anchor="middle" fill="#7A5800" font-weight="bold" font-family="serif">GP</text>
+</svg>

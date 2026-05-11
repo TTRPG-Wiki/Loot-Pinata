@@ -1,0 +1,70 @@
+{
+  "name": "Example: Goblin Warband",
+  "description": "A simple custom table showing all available fields",
+  "tiers": [
+    {
+      "label": "Goblin Scout",
+      "coins": {
+        "cp": { "chance": 100, "dice": "2d6" },
+        "sp": { "chance": 50, "dice": "1d4" }
+      },
+      "items": [
+        {
+          "chance": 25,
+          "table": ["Rusty dagger", "Crude shortbow", "Tattered cloak"]
+        }
+      ]
+    },
+    {
+      "label": "Goblin Boss",
+      "coins": {
+        "cp": { "chance": 100, "dice": "3d6", "mult": 10 },
+        "sp": { "chance": 75, "dice": "2d6", "mult": 10 },
+        "gp": { "chance": 30, "dice": "1d6" }
+      },
+      "gems": {
+        "chance": 25,
+        "dice": "1d3",
+        "values": [10, 25, 50]
+      },
+      "items": [
+        {
+          "chance": 60,
+          "table": ["Notched scimitar", "Wolf-tooth necklace", "Crude amulet"]
+        },
+        {
+          "chance": 15,
+          "table": ["Potion of Healing", "Scroll of Comprehend Languages"]
+        }
+      ]
+    },
+    {
+      "label": "Hobgoblin Warlord",
+      "coins": {
+        "sp": { "chance": 100, "dice": "4d6", "mult": 10 },
+        "gp": { "chance": 80, "dice": "3d6", "mult": 10 },
+        "pp": { "chance": 20, "dice": "1d4" }
+      },
+      "gems": {
+        "chance": 50,
+        "dice": "1d6",
+        "values": [50, 100, 250, 500]
+      },
+      "jewelry": {
+        "chance": 30,
+        "dice": "1d3",
+        "description": "Ornate dagger or pendant (1d6 × 100 gp)"
+      },
+      "items": [
+        {
+          "chance": 80,
+          "table": ["+1 Weapon", "+1 Shield", "Banded mail of finest steel"]
+        },
+        {
+          "chance": 30,
+          "table": ["Potion of Greater Healing", "Wand of Magic Missiles", "Cloak of Protection"]
+        }
+      ]
+    }
+  ]
+}

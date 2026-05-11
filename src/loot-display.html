@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loot Pinata</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, sans-serif;
+      background: #1a1a2e;
+      color: #e0d8c8;
+      padding: 14px;
+      min-height: 100vh;
+      font-size: 13px;
+    }
+
+    h2 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #f0c040;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    label {
+      font-size: 12px;
+      color: #a09880;
+      width: 80px;
+      flex-shrink: 0;
+    }
+
+    select {
+      flex: 1;
+      background: #2a2a42;
+      color: #e0d8c8;
+      border: 1px solid #44445a;
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 12px;
+      cursor: pointer;
+      outline: none;
+      font-family: inherit;
+    }
+
+    select:focus { border-color: #f0c040; }
+
+    .icon-btn {
+      background: #2a2a42;
+      color: #a09880;
+      border: 1px solid #44445a;
+      border-radius: 6px;
+      padding: 6px 9px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .icon-btn:hover { background: #33334a; color: #e0d8c8; }
+
+    .roll-btn {
+      width: 100%;
+      padding: 10px;
+      background: #f0c040;
+      color: #1a1a2e;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.15s;
+      margin-top: 4px;
+      margin-bottom: 12px;
+    }
+    .roll-btn:hover { background: #ffd060; }
+    .roll-btn:disabled {
+      background: #44445a;
+      color: #807868;
+      cursor: not-allowed;
+    }
+
+    .upload-row {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .upload-btn, .browse-btn {
+      flex: 1;
+      padding: 7px;
+      border-radius: 6px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+      font-family: inherit;
+    }
+
+    .upload-btn {
+      background: #2a4a3a;
+      color: #a0d8b0;
+      border: 1px solid #44805a;
+    }
+    .upload-btn:hover { background: #305a45; }
+
+    .browse-btn {
+      background: #2a3a5a;
+      color: #a0b8e0;
+      border: 1px solid #4458a0;
+    }
+    .browse-btn:hover { background: #304570; }
+
+    .hint {
+      font-size: 11px;
+      color: #606070;
+      margin-top: 4px;
+      margin-bottom: 8px;
+    }
+
+    .hint a {
+      color: #a09880;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .hint a:hover { color: #f0c040; }
+
+    .error {
+      background: #3a2020;
+      border: 1px solid #804040;
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 12px;
+      color: #e07070;
+      margin-bottom: 10px;
+      display: none;
+    }
+    .error.visible { display: block; }
+
+    .looted-warning {
+      background: #3a2a10;
+      border: 1px solid #806040;
+      border-radius: 6px;
+      padding: 7px 11px;
+      font-size: 11px;
+      color: #e0a070;
+      margin-bottom: 10px;
+      display: none;
+    }
+    .looted-warning.visible { display: block; }
+
+    .results {
+      display: none;
+      border-top: 1px solid #33334a;
+      padding-top: 12px;
+      margin-top: 8px;
+    }
+    .results.visible { display: block; }
+
+    .result-header {
+      font-size: 11px;
+      color: #807868;
+      margin-bottom: 4px;
+    }
+
+    .section-title {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #f0c040;
+      margin: 12px 0 6px;
+      padding-bottom: 3px;
+      border-bottom: 1px solid #33334a;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .section-total {
+      font-size: 11px;
+      font-weight: 700;
+      color: #90c0a0;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .item-subtotal {
+      float: right;
+      color: #807868;
+      font-size: 11px;
+    }
+
+    .coin-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      padding: 2px 0;
+    }
+    .coin-label { color: #a09880; }
+    .coin-value { font-weight: 600; }
+    .coin-cp .coin-value { color: #b87040; }
+    .coin-sp .coin-value { color: #c0c8d0; }
+    .coin-ep .coin-value { color: #90c0a0; }
+    .coin-gp .coin-value { color: #f0c040; }
+    .coin-pp .coin-value { color: #c0a8f8; }
+
+    .magic-item, .treasure-item {
+      font-size: 12px;
+      padding: 3px 0 3px 8px;
+      border-left: 2px solid #f0c040;
+      margin-bottom: 3px;
+    }
+    .treasure-item { border-left-color: #90c0a0; }
+
+    .no-content {
+      font-size: 11px;
+      color: #606070;
+      font-style: italic;
+      padding: 2px 0;
+    }
+
+    .table-management {
+      background: #14142a;
+      border: 1px solid #33334a;
+      border-radius: 6px;
+      padding: 8px;
+      margin-top: 4px;
+      margin-bottom: 10px;
+    }
+
+    .table-management-title {
+      font-size: 10px;
+      color: #807868;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    .table-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      padding: 4px 6px;
+      background: #2a2a42;
+      border-radius: 4px;
+      margin-bottom: 3px;
+    }
+
+    .table-item-name { color: #e0d8c8; }
+    .table-item-tiers { color: #807868; font-size: 11px; margin-left: 6px; }
+
+    .delete-btn {
+      background: transparent;
+      color: #604040;
+      border: none;
+      cursor: pointer;
+      padding: 2px 6px;
+      font-size: 14px;
+      line-height: 1;
+    }
+    .delete-btn:hover { color: #ff8080; }
+
+    input[type="file"] { display: none; }
+
+    /* Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 12px;
+    }
+    .modal-backdrop.visible { display: flex; }
+
+    .modal {
+      background: #22223a;
+      border: 1px solid #44445a;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 400px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-header {
+      padding: 14px 16px;
+      border-bottom: 1px solid #33334a;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #f0c040;
+    }
+
+    .close-btn {
+      background: transparent;
+      color: #807868;
+      border: none;
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0;
+    }
+    .close-btn:hover { color: #e0d8c8; }
+
+    .modal-body {
+      padding: 12px 16px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .community-table {
+      background: #1a1a2e;
+      border: 1px solid #33334a;
+      border-radius: 6px;
+      padding: 10px 12px;
+      margin-bottom: 8px;
+    }
+
+    .ct-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #f0c040;
+      margin-bottom: 3px;
+    }
+
+    .ct-meta {
+      font-size: 10px;
+      color: #807868;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 5px;
+    }
+
+    .ct-desc {
+      font-size: 12px;
+      color: #c0b898;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .install-btn {
+      background: #f0c040;
+      color: #1a1a2e;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .install-btn:hover { background: #ffd060; }
+    .install-btn:disabled {
+      background: #44445a;
+      color: #807868;
+      cursor: default;
+    }
+  </style>
+  <script type="module" crossorigin src="../assets/lootDisplay-BBcM4i1k.js"></script>
+</head>
+<body>
+  <h2>
+    <img src="../icon.svg" width="18" height="18" alt="" />
+    Loot Pinata
+  </h2>
+
+  <div class="looted-warning" id="looted-warning">
+    Already looted — rerolling will overwrite.
+  </div>
+
+  <div class="error" id="error"></div>
+
+  <div class="row">
+    <label for="system-select">System</label>
+    <select id="system-select">
+      <option value="dnd5e">D&amp;D 5e</option>
+      <option value="pf2e">Pathfinder 2e</option>
+      <option value="shadowdark">Shadowdark</option>
+      <option value="ose">OSE</option>
+      <option value="custom">Custom</option>
+    </select>
+  </div>
+
+  <!-- D&D 5e controls -->
+  <div class="system-panel" id="panel-dnd5e">
+    <div class="row">
+      <label for="cr-select">Monster CR</label>
+      <select id="cr-select"></select>
+    </div>
+  </div>
+
+  <!-- PF2e controls -->
+  <div class="system-panel" id="panel-pf2e" style="display:none;">
+    <div class="row">
+      <label for="pf2e-select">Level</label>
+      <select id="pf2e-select"></select>
+    </div>
+  </div>
+
+  <!-- Shadowdark controls -->
+  <div class="system-panel" id="panel-shadowdark" style="display:none;">
+    <div class="row">
+      <label for="sd-select">Tier</label>
+      <select id="sd-select"></select>
+    </div>
+  </div>
+
+  <!-- OSE controls -->
+  <div class="system-panel" id="panel-ose" style="display:none;">
+    <div class="row">
+      <label for="ose-select">Type</label>
+      <select id="ose-select"></select>
+    </div>
+  </div>
+
+  <!-- Custom controls -->
+  <div class="system-panel" id="panel-custom" style="display:none;">
+    <div class="row">
+      <label for="custom-table">Table</label>
+      <select id="custom-table"></select>
+    </div>
+    <div class="row" id="custom-tier-row" style="display:none;">
+      <label for="custom-tier">Tier</label>
+      <select id="custom-tier"></select>
+    </div>
+
+    <div class="upload-row">
+      <button class="upload-btn" id="upload-btn">⬆ Upload</button>
+      <button class="browse-btn" id="browse-btn">🌐 Browse community</button>
+    </div>
+
+    <div class="hint">
+      Tables stored in your browser only.
+      <a id="example-link">Download example ↓</a>
+      ·
+      <a id="format-help-link">Format spec ↗</a>
+    </div>
+
+    <div class="table-management" id="table-management" style="display:none;">
+      <div class="table-management-title">Your tables</div>
+      <div id="table-list"></div>
+    </div>
+
+    <input type="file" id="file-input" accept=".json,application/json" />
+  </div>
+
+  <button class="roll-btn" id="roll-btn">🎲 Roll Loot!</button>
+
+  <div class="results" id="results"></div>
+
+  <!-- Community Browse Modal -->
+  <div class="modal-backdrop" id="community-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <span class="modal-title">Community Tables</span>
+        <button class="close-btn" id="close-modal">×</button>
+      </div>
+      <div class="modal-body" id="community-list">
+        Loading…
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

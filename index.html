@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loot Pinata — Owlbear Rodeo Extension</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, sans-serif;
+      background: #1a1a2e;
+      color: #e0d8c8;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .card {
+      max-width: 480px;
+      width: 100%;
+      background: #22223a;
+      border: 1px solid #33334a;
+      border-radius: 12px;
+      padding: 36px;
+      text-align: center;
+    }
+
+    img { margin-bottom: 16px; }
+
+    h1 {
+      font-size: 26px;
+      font-weight: 800;
+      color: #f0c040;
+      margin-bottom: 8px;
+    }
+
+    .tagline {
+      font-size: 14px;
+      color: #a09880;
+      margin-bottom: 28px;
+    }
+
+    .install-box {
+      background: #1a1a2e;
+      border: 1px solid #44445a;
+      border-radius: 8px;
+      padding: 14px 16px;
+      text-align: left;
+      margin-bottom: 24px;
+    }
+
+    .install-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #f0c040;
+      margin-bottom: 8px;
+    }
+
+    .install-url {
+      font-family: monospace;
+      font-size: 13px;
+      color: #e0d8c8;
+      word-break: break-all;
+    }
+
+    .steps {
+      text-align: left;
+      list-style: none;
+      margin-bottom: 24px;
+    }
+
+    .steps li {
+      font-size: 13px;
+      color: #a09880;
+      padding: 5px 0 5px 24px;
+      position: relative;
+    }
+
+    .steps li::before {
+      content: attr(data-step);
+      position: absolute;
+      left: 0;
+      color: #f0c040;
+      font-weight: 700;
+    }
+
+    .how-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #a09880;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img src="./icon.svg" width="64" height="64" alt="Loot Pinata icon" />
+    <h1>Loot Pinata</h1>
+    <p class="tagline">Right-click any monster token to roll D&amp;D 5e loot from the DMG tables.</p>
+
+    <div class="install-box">
+      <div class="install-label">Install URL</div>
+      <div class="install-url" id="manifest-url"></div>
+    </div>
+
+    <p class="how-label">How to install</p>
+    <ol class="steps">
+      <li data-step="1.">Copy the install URL above.</li>
+      <li data-step="2.">In Owlbear Rodeo, open the Extensions panel.</li>
+      <li data-step="3.">Click "Add Extension" and paste the URL.</li>
+      <li data-step="4.">Right-click any token as GM → <strong>Loot!</strong></li>
+    </ol>
+  </div>
+
+  <script>
+    document.getElementById('manifest-url').textContent =
+      window.location.origin + window.location.pathname.replace(/\/?$/, '/') + 'manifest.json';
+  </script>
+</body>
+</html>

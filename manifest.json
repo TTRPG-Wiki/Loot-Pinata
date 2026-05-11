@@ -1,0 +1,29 @@
+{
+  "name": "Loot Pinata",
+  "version": "1.0.0",
+  "description": "Right-click any monster token to roll D&D 5e loot from the DMG tables",
+  "author": "Kevin Shunk",
+  "icon": "./icon.svg",
+  "tokens": [],
+  "contextMenu": [
+    {
+      "id": "loot-pinata/loot",
+      "icons": [
+        {
+          "icon": "./icon.svg",
+          "label": "Loot!",
+          "filter": {
+            "roles": ["GM"],
+            "every": [
+              { "key": "type", "value": "IMAGE", "operator": "==" }
+            ]
+          }
+        }
+      ],
+      "embed": {
+        "url": "./src/loot-display.html",
+        "height": 520
+      }
+    }
+  ]
+}
