@@ -32,8 +32,3 @@ Tables use the same JSON schema as locally-uploaded tables. See [example-table.j
 - **Flavor over crunch.** Half the appeal of a custom table is the items feel different from the core books.
 - **Test it.** Roll on every tier a few times in the extension before submitting — make sure the chances feel right.
 
-## What gets rejected
-
-- Verbatim copies of published material (the WotC magic item lists, etc.) — those are already covered by the built-in systems.
-- Tables with only one or two tiers.
-- Tables that crash or roll nothing 90% of the time.
