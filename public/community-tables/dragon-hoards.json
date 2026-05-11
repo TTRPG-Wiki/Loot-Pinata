@@ -1,0 +1,170 @@
+{
+  "name": "Dragon Hoards",
+  "description": "Massive treasure piles scaled by dragon age category",
+  "tiers": [
+    {
+      "label": "Wyrmling Hoard",
+      "coins": {
+        "cp": { "chance": 100, "dice": "6d6", "mult": 100 },
+        "sp": { "chance": 100, "dice": "3d6", "mult": 100 },
+        "gp": { "chance": 100, "dice": "2d6", "mult": 10 }
+      },
+      "gems": {
+        "chance": 60,
+        "dice": "2d6",
+        "values": [10, 50, 100]
+      },
+      "jewelry": {
+        "chance": 40,
+        "dice": "1d6",
+        "description": "Simple jewelry (25 gp)"
+      },
+      "items": [
+        {
+          "chance": 40,
+          "table": [
+            "+1 Weapon",
+            "Potion of Healing",
+            "Potion of Greater Healing",
+            "Spell Scroll (1st-2nd Level)",
+            "Bag of Holding"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Young Dragon Hoard",
+      "coins": {
+        "sp": { "chance": 100, "dice": "6d6", "mult": 100 },
+        "gp": { "chance": 100, "dice": "4d6", "mult": 100 },
+        "pp": { "chance": 50, "dice": "2d6", "mult": 10 }
+      },
+      "gems": {
+        "chance": 80,
+        "dice": "3d6",
+        "values": [50, 100, 500]
+      },
+      "jewelry": {
+        "chance": 70,
+        "dice": "2d6",
+        "description": "Fine jewelry (250 gp)"
+      },
+      "items": [
+        {
+          "chance": 70,
+          "table": [
+            "+1 Weapon",
+            "+1 Armor",
+            "+1 Shield",
+            "Cloak of Protection",
+            "Boots of Elvenkind",
+            "Cloak of Elvenkind",
+            "Wand of Magic Missiles",
+            "Potion of Greater Healing"
+          ]
+        },
+        {
+          "chance": 25,
+          "table": [
+            "Spell Scroll (3rd-4th Level)",
+            "Bag of Holding",
+            "Driftglobe",
+            "Goggles of Night"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Adult Dragon Hoard",
+      "coins": {
+        "gp": { "chance": 100, "dice": "10d6", "mult": 100 },
+        "pp": { "chance": 100, "dice": "4d6", "mult": 100 }
+      },
+      "gems": {
+        "chance": 100,
+        "dice": "4d6",
+        "values": [100, 500, 1000]
+      },
+      "jewelry": {
+        "chance": 90,
+        "dice": "3d6",
+        "description": "Ornate jewelry (750 gp)"
+      },
+      "items": [
+        {
+          "chance": 95,
+          "table": [
+            "+2 Weapon",
+            "+2 Armor",
+            "+2 Shield",
+            "Belt of Hill Giant Strength",
+            "Boots of Speed",
+            "Cloak of Displacement",
+            "Crystal Ball",
+            "Ring of Regeneration",
+            "Wand of Lightning Bolts"
+          ]
+        },
+        {
+          "chance": 60,
+          "table": [
+            "Carpet of Flying",
+            "Ring of Spell Storing",
+            "Helm of Telepathy",
+            "Robe of Useful Items"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Ancient Dragon Hoard",
+      "coins": {
+        "gp": { "chance": 100, "dice": "20d10", "mult": 1000 },
+        "pp": { "chance": 100, "dice": "20d6", "mult": 100 }
+      },
+      "gems": {
+        "chance": 100,
+        "dice": "6d6",
+        "values": [500, 1000, 5000]
+      },
+      "jewelry": {
+        "chance": 100,
+        "dice": "4d6",
+        "description": "Masterwork jewelry (2500 gp)"
+      },
+      "items": [
+        {
+          "chance": 100,
+          "table": [
+            "+3 Weapon",
+            "+3 Armor",
+            "+3 Shield",
+            "Holy Avenger",
+            "Vorpal Sword",
+            "Defender",
+            "Belt of Cloud Giant Strength",
+            "Cloak of Invisibility",
+            "Manual of Bodily Health",
+            "Tome of Clear Thought"
+          ]
+        },
+        {
+          "chance": 80,
+          "table": [
+            "Apparatus of Kwalish",
+            "Deck of Many Things",
+            "Sphere of Annihilation",
+            "Staff of the Magi"
+          ]
+        },
+        {
+          "chance": 50,
+          "table": [
+            "Artifact: minor",
+            "Artifact: legendary"
+          ]
+        }
+      ]
+    }
+  ]
+}

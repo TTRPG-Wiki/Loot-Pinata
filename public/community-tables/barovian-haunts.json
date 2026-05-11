@@ -1,0 +1,93 @@
+{
+  "name": "Barovian Haunts",
+  "description": "Cursed and macabre treasure for gothic horror games",
+  "tiers": [
+    {
+      "label": "Peasant Hovel",
+      "coins": {
+        "cp": { "chance": 100, "dice": "2d6" },
+        "sp": { "chance": 60, "dice": "1d4" }
+      },
+      "items": [
+        {
+          "chance": 30,
+          "table": [
+            "Tarnished silver locket",
+            "Cracked porcelain doll",
+            "Bloodstained linen",
+            "Withered garlic clove",
+            "Old wooden stake",
+            "Tattered prayer ribbon",
+            "Vial of holy water (half empty)"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Wandering Vistani",
+      "coins": {
+        "sp": { "chance": 100, "dice": "3d6" },
+        "gp": { "chance": 50, "dice": "1d6" }
+      },
+      "gems": {
+        "chance": 35,
+        "dice": "1d3",
+        "values": [10, 25, 50, 100]
+      },
+      "items": [
+        {
+          "chance": 50,
+          "table": [
+            "Deck of fortune-telling cards",
+            "Brass spirit bell",
+            "Hand-carved tarokka figure",
+            "Black candle (anti-scrying)",
+            "Vial of dream pollen",
+            "Crystal pendulum",
+            "Map fragment to Strahd's tomb"
+          ]
+        },
+        {
+          "chance": 15,
+          "table": [
+            "Charm of Heroism (single use)",
+            "Potion of Vitality",
+            "Spell scroll of Protection from Evil"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Strahd's Reward",
+      "coins": {
+        "gp": { "chance": 100, "dice": "4d6", "mult": 10 },
+        "pp": { "chance": 75, "dice": "2d6" }
+      },
+      "gems": {
+        "chance": 90,
+        "dice": "2d4",
+        "values": [50, 100, 250, 500, 1000]
+      },
+      "jewelry": {
+        "chance": 70,
+        "dice": "1d3",
+        "description": "Ornate jewelry of dark Barovian make (1d6 × 100 gp)"
+      },
+      "items": [
+        {
+          "chance": 80,
+          "table": [
+            "Sunsword shard",
+            "Holy symbol of Ravenkind",
+            "Tome of Strahd (cursed)",
+            "Icon of Ravenloft",
+            "Blood Spear",
+            "Amulet of Inversion",
+            "Cloak of the Bat",
+            "Periapt of Wound Closure"
+          ]
+        }
+      ]
+    }
+  ]
+}

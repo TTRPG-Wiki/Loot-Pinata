@@ -1,0 +1,28 @@
+{
+  "tables": [
+    {
+      "file": "barovian-haunts.json",
+      "name": "Barovian Haunts",
+      "description": "Cursed treasures and dark relics for gothic horror campaigns (Curse of Strahd inspired)",
+      "author": "loot-pinata",
+      "system": "D&D 5e / Gothic Horror",
+      "tiers": 3
+    },
+    {
+      "file": "cyberpunk-night-city.json",
+      "name": "Night City Salvage",
+      "description": "Chrome, eddies, and street tech for cyberpunk games",
+      "author": "loot-pinata",
+      "system": "Cyberpunk RED / generic",
+      "tiers": 4
+    },
+    {
+      "file": "dragon-hoards.json",
+      "name": "Dragon Hoards",
+      "description": "Massive treasure piles by dragon age category",
+      "author": "loot-pinata",
+      "system": "Generic Fantasy",
+      "tiers": 4
+    }
+  ]
+}

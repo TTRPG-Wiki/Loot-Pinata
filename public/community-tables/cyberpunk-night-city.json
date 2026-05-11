@@ -1,0 +1,117 @@
+{
+  "name": "Night City Salvage",
+  "description": "Street tech, chrome, and eddies for cyberpunk games (gp = eddies/eb)",
+  "tiers": [
+    {
+      "label": "Ganger Mook",
+      "coins": {
+        "gp": { "chance": 100, "dice": "2d6", "mult": 10 }
+      },
+      "items": [
+        {
+          "chance": 60,
+          "table": [
+            "Cheap pistol (low ammo)",
+            "Combat knife",
+            "Stolen wallet (1d6 eb)",
+            "Pack of cigarettes",
+            "Scop ration bars (3)",
+            "Drug stim (Synth-Coke)",
+            "Burner shard",
+            "Counterfeit ID"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Solo Mercenary",
+      "coins": {
+        "gp": { "chance": 100, "dice": "3d6", "mult": 50 }
+      },
+      "items": [
+        {
+          "chance": 80,
+          "table": [
+            "Smart pistol (50 rounds)",
+            "Armored jacket (10 SP)",
+            "Cyberoptic with targeting",
+            "Subdermal armor (used)",
+            "Reflex booster pack",
+            "Combat drug pack",
+            "Encrypted shard (gig data)",
+            "Med-pack (3 charges)"
+          ]
+        },
+        {
+          "chance": 30,
+          "table": [
+            "Tech upgrade chip",
+            "Smartgun link",
+            "Concealable trauma plates",
+            "Cyberdeck (basic)"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Netrunner Cache",
+      "coins": {
+        "gp": { "chance": 100, "dice": "4d6", "mult": 100 }
+      },
+      "items": [
+        {
+          "chance": 100,
+          "table": [
+            "Tier-2 cyberdeck",
+            "Black ICE breaker program",
+            "Stealth daemon",
+            "Shard of stolen corp data",
+            "Encrypted credstick (5000 eb)",
+            "VR rig (custom)",
+            "Neural interface upgrade",
+            "Custom virus payload"
+          ]
+        },
+        {
+          "chance": 50,
+          "table": [
+            "Datafortress access codes",
+            "Corp blackmail file",
+            "Quickhack: Synapse Burnout",
+            "Quickhack: Cyberpsychosis"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Corp Executive",
+      "coins": {
+        "gp": { "chance": 100, "dice": "6d6", "mult": 1000 }
+      },
+      "items": [
+        {
+          "chance": 100,
+          "table": [
+            "Mil-tech smartgun",
+            "Subdermal pocket (with loot)",
+            "Designer cyberarms",
+            "Kiroshi Mk.4 optics",
+            "Sandevistan implant",
+            "Bioplastic skin weave",
+            "Diamond cufflinks (5000 eb)",
+            "Master encryption keys"
+          ]
+        },
+        {
+          "chance": 75,
+          "table": [
+            "Corp ID badge (top clearance)",
+            "Untraceable cred chip (10k eb)",
+            "Custom AV transponder",
+            "Limited Edition Saburo Arasaka watch"
+          ]
+        }
+      ]
+    }
+  ]
+}
