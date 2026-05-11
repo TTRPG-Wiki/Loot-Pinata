@@ -40,19 +40,3 @@ In the Custom tab you can:
 
 Want to share a table with everyone? See [CONTRIBUTING.md](CONTRIBUTING.md) — PR a JSON file into `public/community-tables/` and it'll show up in every install under "Browse community" once merged.
 
-## Local development
-
-```bash
-npm install
-npm run dev
-```
-
-Open `http://localhost:5173/src/loot-display.html` to work on the panel directly, or paste `http://localhost:5173/manifest.json` into a local Owlbear Rodeo instance to test inside OBR.
-
-## Deploy
-
-Pushing to `main` runs `.github/workflows/deploy.yml`, which builds with Vite and publishes to the `gh-pages` branch. Enable GitHub Pages in **repo settings → Pages → Source: `gh-pages` branch**.
-
-## License
-
-MIT.
