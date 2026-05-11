@@ -39,6 +39,21 @@ const WEAPONS = ['Battleaxe +1', 'Battleaxe +2', 'Dagger +1, +2 vs small', 'Hand
 
 const MISC = ['Bag of Holding', 'Bag of Devouring (cursed)', 'Boots of Levitation', 'Boots of Speed', 'Boots of Traveling and Leaping', 'Bracers of Defense AC4', 'Broom of Flying', 'Carpet of Flying', 'Cloak of Displacement', 'Cloak of Elvenkind', 'Crystal Ball', 'Decanter of Endless Water', 'Drums of Panic', 'Efreeti Bottle', 'Elven Boots', 'Elven Cloak', 'Eyes of the Eagle', 'Gauntlets of Ogre Power', 'Girdle of Giant Strength', 'Helm of Reading Magic', 'Helm of Telepathy', 'Horn of Blasting', 'Mirror of Life Trapping', 'Robe of Useful Items', 'Rope of Climbing', 'Ring of Animal Control', 'Ring of Fire Resistance', 'Ring of Invisibility', 'Ring of Protection +1', 'Ring of Protection +2', 'Ring of Regeneration', 'Ring of Spell Storing', 'Ring of Spell Turning', 'Ring of Telekinesis', 'Ring of Three Wishes', 'Ring of Water Walking', 'Ring of X-Ray Vision', 'Ring of Weakness (cursed)', 'Rod of Cancellation', 'Snake Staff', 'Staff of Healing', 'Staff of Striking', 'Staff of Withering', 'Wand of Cold', 'Wand of Enemy Detection', 'Wand of Fear', 'Wand of Fire Balls', 'Wand of Illusion', 'Wand of Lightning Bolts', 'Wand of Magic Detection', 'Wand of Negation', 'Wand of Paralyzation', 'Wand of Polymorph', 'Wand of Secret Door Detection'];
 
+// OSE "Any" magic item subtable (d% weighted) — mirrors B/X distribution where
+// potions and scrolls are most common, swords/armor/misc rarer, rings/staves rare
+function rollAnyItem() {
+  const d = Math.floor(Math.random() * 100) + 1;
+  if (d <= 20) return pickRandom(POTIONS);
+  if (d <= 35) return pickRandom(SCROLLS);
+  if (d <= 50) return pickRandom(SWORDS);
+  if (d <= 60) return pickRandom(ARMOR);
+  if (d <= 70) return pickRandom(WEAPONS);
+  if (d <= 90) return pickRandom(MISC);
+  // Top 10% bias toward standout items (rings, staves)
+  const standouts = MISC.filter(i => /Ring|Staff|Wand|Rod/.test(i));
+  return pickRandom(standouts.length ? standouts : MISC);
+}
+
 function rollMagicItem(category) {
   switch (category) {
     case 'potion': return pickRandom(POTIONS);
@@ -46,13 +61,20 @@ function rollMagicItem(category) {
     case 'sword': return pickRandom(SWORDS);
     case 'armor': return pickRandom(ARMOR);
     case 'weapon': return pickRandom(WEAPONS);
-    case 'nonweapon': return pickRandom([...MISC, ...POTIONS, ...SCROLLS]);
+    case 'nonweapon': {
+      // Roll on "any" but reroll if a sword or non-sword weapon comes up
+      let pick = rollAnyItem();
+      let attempts = 0;
+      while (attempts < 10 && (SWORDS.includes(pick) || WEAPONS.includes(pick))) {
+        pick = rollAnyItem();
+        attempts++;
+      }
+      return pick;
+    }
     case 'sword_armor_weapon': return pickRandom([...SWORDS, ...ARMOR, ...WEAPONS]);
     case 'any':
-    default: {
-      const all = [...SWORDS, ...ARMOR, ...WEAPONS, ...MISC, ...POTIONS, ...SCROLLS];
-      return pickRandom(all);
-    }
+    default:
+      return rollAnyItem();
   }
 }
 

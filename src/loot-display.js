@@ -14,6 +14,7 @@ const EXAMPLE_URL = new URL('../example-table.json', window.location.href).href;
 const state = {
   system: 'dnd5e',
   cr: '5',
+  dnd5eMode: 'individual',
   pf2eLevel: '5',
   sdTier: '1',
   oseType: 'A',
@@ -145,7 +146,7 @@ async function rollLoot() {
   let loot;
   try {
     switch (state.system) {
-      case 'dnd5e': loot = Dnd5e.generateLoot(state.cr); break;
+      case 'dnd5e': loot = Dnd5e.generateLoot(state.cr, state.dnd5eMode); break;
       case 'pf2e': loot = Pf2e.generateLoot(state.pf2eLevel); break;
       case 'shadowdark': loot = Shadowdark.generateLoot(state.sdTier); break;
       case 'ose': loot = Ose.generateLoot(state.oseType); break;
@@ -211,9 +212,10 @@ function displayLoot(loot) {
     html += `<div class="section-title">Gems (${gems.count})${total}</div>`;
     gems.items.forEach(g => {
       if (typeof g === 'object' && g.value != null) {
+        const namePart = g.name ? ` (${escapeHtml(g.name)})` : '';
         const label = g.count > 1
-          ? `${g.count} × ${g.value.toLocaleString()} gp gem`
-          : `${g.value.toLocaleString()} gp gem`;
+          ? `${g.count} × ${g.value.toLocaleString()} gp gem${namePart}`
+          : `${g.value.toLocaleString()} gp gem${namePart}`;
         const subtotal = g.count > 1
           ? `<span class="item-subtotal">${(g.value * g.count).toLocaleString()} gp</span>`
           : '';
@@ -228,7 +230,8 @@ function displayLoot(loot) {
     const total = jewelry.totalValue != null
       ? `<span class="section-total">${jewelry.totalValue.toLocaleString()} gp</span>`
       : '';
-    html += `<div class="section-title">Jewelry (${jewelry.count})${total}</div>`;
+    const jLabel = jewelry.label || 'Jewelry';
+    html += `<div class="section-title">${escapeHtml(jLabel)} (${jewelry.count})${total}</div>`;
     jewelry.items.forEach(j => {
       if (typeof j === 'object') {
         const valStr = j.value != null
@@ -337,6 +340,7 @@ populateCustomTables();
 $('system-select').addEventListener('change', e => switchSystem(e.target.value));
 
 $('cr-select').addEventListener('change', e => { state.cr = e.target.value; });
+$('dnd5e-mode').addEventListener('change', e => { state.dnd5eMode = e.target.value; });
 $('pf2e-select').addEventListener('change', e => { state.pf2eLevel = e.target.value; });
 $('sd-select').addEventListener('change', e => { state.sdTier = e.target.value; });
 $('ose-select').addEventListener('change', e => { state.oseType = e.target.value; });
