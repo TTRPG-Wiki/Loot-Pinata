@@ -40,3 +40,16 @@ In the Custom tab you can:
 
 Want to share a table with everyone? See [CONTRIBUTING.md](CONTRIBUTING.md) — PR a JSON file into `public/community-tables/` and it'll show up in every install under "Browse community" once merged.
 
+## Local development
+
+```bash
+npm install
+npm run dev
+```
+
+Then add `http://localhost:5173/manifest.json` as an extension in OBR. To build for production:
+
+```bash
+npm run build
+```
+
